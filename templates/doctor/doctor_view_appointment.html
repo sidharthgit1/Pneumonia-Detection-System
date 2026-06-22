@@ -1,0 +1,53 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{#<body>#}
+
+{% extends "doctor/doctorindex.html" %}
+{% block body %}
+<form action="/myapp/doctor_view_appointment_post/" method="post">
+<table width="200" border="1" class="table table-bordered">
+  <tr>
+    <td>from</td>
+    <td><label for="textfield"></label>
+      <input type="date" name="textfield" id="textfield" class="form-control" required /></td>
+    <td>To</td>
+    <td><label for="textfield2"></label>
+      <input type="date" name="textfield2" id="textfield2" class="form-control" required /></td>
+    <td><input type="submit" name="Search" id="Search" value="Search"  class="btn btn-success"/></td>
+  </tr>
+</table>
+
+<table width="296" border="1" class="table table-bordered">
+  <tr>
+    <td>S1 no</td>
+    <td>Schedule Date</td>
+    <td>Schedule time</td>
+    <td>User info</td>
+
+    <td></td>
+   
+  </tr>
+  <tr>
+         {% for i in data %}
+  <tr>
+    <td height="33">&nbsp;{{ forloop.counter }}</td>
+    <td>{{ i.date }}&nbsp;</td>
+    <td>{{ i.SCHEDULE.from_time }}-{{ i.SCHEDULE.from_time }} </td>
+    <td>{{ i.USER.name }}</td>
+    <td><a href="/myapp/doctor_xray__upload/{{ i.id }}" class="btn btn-success">Upload x-ray</a> </td>
+    <td><a href="/myapp/doctor_view_result/{{ i.id }}" class="btn btn-success">View result</a> </td>
+  </tr>
+    {% endfor %}
+  </tr>
+</table>
+
+</form>
+
+{% endblock %}
+
+{#</body>#}
+{#</html>#}

@@ -1,0 +1,53 @@
+{% extends "doctor/doctorindex.html" %}
+{% block body %}
+
+    <!-- Loading spinner (hidden initially) -->
+    <div id="loadingSpinner" class="d-none spinner-border" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div id="loadingSpinnerGrow" class="d-none spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <form id="form1" name="form1" method="post" action="/myapp/pnpreidct/" enctype="multipart/form-data" class="p-4 border rounded shadow bg-white" onsubmit="showLoadingSpinner()">
+        {% csrf_token %}
+
+        <h3 class="text-center text-primary mb-3">Upload File for Prediction</h3>
+        <div class="mb-3">
+            <label for="imageField" class="form-label fw-bold">Select a File:</label>
+            <input type="file" name="photo" id="imageField" class="form-control" required/>
+        </div>
+        <div class="d-grid">
+            <input type="submit" name="send" id="send" value="Upload & Predict" class="btn btn-success">
+        </div>
+{% if data %}
+    <div>
+       <center> <p style="font-size: x-large;color:#006199"><b> X - ray uploaded success Result is {{ data }} Saved to result </b></p></center>
+    </div>
+    {% endif %}
+    </form>
+
+    <!-- Loading spinner container -->
+    <div id="loadingSpinnerContainer" class="d-none position-fixed top-50 start-50 translate-middle">
+        <div id="loadingSpinner" class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="loadingSpinnerGrow" class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+            <h2>Loading....</h2>
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+    function showLoadingSpinner() {
+        // Show the spinner when the form is submitted
+        document.getElementById('loadingSpinnerContainer').classList.remove('d-none');
+
+        // Disable the submit button to prevent multiple submissions
+        document.getElementById('send').disabled = true;
+    }
+</script>
+
+{% endblock %}

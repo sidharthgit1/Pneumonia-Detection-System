@@ -1,0 +1,38 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{#<body>#}
+
+{% extends "user/userindex.html" %}
+{% block body %}
+{#<table width="200" border="1" class="form-control table table-bordered">#}
+{#  <tr>#}
+{#    <td>from</td>#}
+{#    <td><label for="textfield"></label>#}
+{#      <input type="date" name="textfield" id="textfield" class="form-control" /></td>#}
+{#    <td>To</td>#}
+{#    <td><label for="textfield2"></label>#}
+{#      <input type="date" name="textfield2" id="textfield2" class="form-control" /></td>#}
+{#    <td><input type="submit" name="Search" id="Search" value="Search" /></td>#}
+{#  </tr>#}
+{#</table>#}
+<table width="296" border="1" class="table table-bordered">
+  <tr>
+    <td>S1 no</td>
+    <td>Date</td>
+    <td>File</td>
+    <td>Result</td>
+  </tr>
+   {% for i in data %}
+  <tr>
+    <td height="33">{{ forloop.counter }};</td>
+    <td>&nbsp;{{ i.date }}</td>
+    <td><a href="{{ i.file }}" class="btn btn-warning">x-ray</a> </td>
+<td>{{ i.result }}&nbsp;</td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock %}

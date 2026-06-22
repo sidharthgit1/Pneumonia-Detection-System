@@ -1,0 +1,106 @@
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{##}
+{#<body>#}
+
+
+{% extends "doctor/doctorindex.html" %}
+{% block body %}
+
+
+    <form id="form1" name="form1" method="post" action="/myapp/doctor_edit_schedule_post/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ data.id }}">
+    <table width="200" border="1" class="table table-bordered">
+        <tr>
+            <td>From time</td>
+            <td>
+                <input type="time" name="from_time" id="fromDate" value="{{ data.from_time }}" class="form-control" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>To time</td>
+            <td>
+                <input type="time" name="to_time" id="toDate" value="{{ data.to_time }}" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <td>
+                <input type="date" name="date" id="dateField" value="{{ data.date | date:'Y-m-d' }}" class="form-control" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>Slot</td>
+            <td>
+                <input type="text" name="slot" id="slot" value="{{ data.slot }}" class="form-control" required />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="add" id="add" value="UPDATE" class="btn btn-success" /></td>
+        </tr>
+    </table>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let dateField = document.getElementById("dateField");
+
+    // Set the min attribute to today's date
+    let today = new Date().toISOString().split("T")[0];
+    dateField.setAttribute("min", today);
+
+    document.getElementById("form1").addEventListener("submit", function (event) {
+      let selectedDate = new Date(dateField.value);
+      let currentDate = new Date();
+
+      // Check if the selected date is in the past
+      if (selectedDate < currentDate) {
+        alert("Please select a future date.");
+        event.preventDefault();
+      }
+    });
+  });
+</script>
+
+
+{#<form id="form1" name="form1" method="post" action="/myapp/doctor_edit_schedule_post/">#}
+{#    {% csrf_token %}#}
+{#    <input type="hidden" name="id" value="{{ data.id }}">#}
+{#  <table width="200" border="1" class="table table-bordered">#}
+{#    <tr>#}
+{#      <td>From time</td>#}
+{#      <td><label for="fromDate"></label>#}
+{#      <input type="time" name="from_time" id="fromDate" value="{{ data.from_time }}" class="form-control" required/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>To time</td>#}
+{#      <td><label for="toDate"></label>#}
+{#      <input type="time" name="to_time" id="toDate"  value="{{ data.to_time }}" class="form-control" required /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Date</td>#}
+{#      <td><label for="toDate"></label>#}
+{#      <input type="date" name="date" id="toDate" value="{{ data.date | date:'Y-m-d' }}" class="form-control" required/></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td>Slot</td>#}
+{#      <td><label for="slot"></label>#}
+{#      <input type="text" name="slot" id="slot"value="{{ data.slot }}" class="form-control" required /></td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#      <td></td>#}
+{#      <td><input type="submit" name="add" id="add" value="ADD" class="btn btn-success" /></td>#}
+{#    </tr>#}
+{#  </table>#}
+{#</form>#}
+
+{% endblock %}
+
+{#</body>#}
+{#</html>#}

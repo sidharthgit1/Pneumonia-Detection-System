@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Sign Up 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="/static/signup/css/style.css">
+
+	</head>
+	<body>
+
+    <script>
+    function validateForm() {
+        let name = document.forms["signupForm"]["name"].value;
+        let email = document.forms["signupForm"]["email"].value;
+        let age = document.forms["signupForm"]["age"].value;
+        let contact = document.forms["signupForm"]["contact"].value;
+        let pin = document.forms["signupForm"]["pin"].value;
+        let password = document.forms["signupForm"]["password"].value;
+        let confirmPassword = document.forms["signupForm"]["confrimpasw"].value;
+        let gender = document.querySelector('input[name="gender"]:checked');
+        let namePattern = /^[A-Za-z\s]+$/;
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        let pinPattern = /^[0-9]{6}$/;
+        let contactPattern = /^[0-9]{10}$/;
+
+        if (!name.match(namePattern)) {
+            alert("Name must contain only letters.");
+            return false;
+        }
+        if (!email.match(emailPattern)) {
+            alert("Invalid email format.");
+            return false;
+        }
+        if (!gender) {
+            alert("Please select a gender.");
+            return false;
+        }
+        if (isNaN(age) || age < 18 || age > 100) {
+            alert("Age must be a number between 18 and 100.");
+            return false;
+        }
+        if (!contact.match(contactPattern)) {
+            alert("Contact number must be exactly 10 digits.");
+            return false;
+        }
+        if (!pin.match(pinPattern)) {
+            alert("Pin must be exactly 6 digits.");
+            return false;
+        }
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return false;
+        }
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+{#					<h2 class="heading-section">Sign Up #03</h2>#}
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+							<div class="text w-100">
+								<div class="icon"><span class="fa fa-soccer-ball-o"></span></div>
+								<h2>Soccer Ball</h2>
+{#								<p>Already have an account?</p>#}
+{#								<a href="#" class="btn btn-white btn-outline-white">Sign In</a>#}
+							</div>
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+{#			      	<h3 class="mb-4">Hello! <span>Please signup to continue</span></h3>#}
+<form name="signupForm" action="/myapp/user_sign_up_post/" method="post" class="signup-form" enctype="multipart/form-data" onsubmit="return validateForm()">
+                                {% csrf_token %}
+			      		<div class="form-group mb-4">
+                            <label class="label" for="name" style="font-size: 20px">Name</label>
+			      			<input type="text" class="form-control"  name="name">
+			      		</div>
+			      		<div class="form-group mb-4">
+			      			<label class="label" for="email" style="font-size: 20px">Email </label>
+			      			<input type="text" class="form-control"   name="email">
+			      		</div>
+			      		<div class="form-group mb-4">
+			      			<label class="label" for="email" style="font-size: 20px">Gender </label><br>
+        <input type="radio" name="gender" value="Male" id="RadioGroup1_0" />Male &nbsp;&nbsp;
+      <input type="radio" name="gender" value="Female" id="RadioGroup1_1" />Female
+			      		</div>
+			      		<div class="form-group mb-4">
+			      			<label class="label" for="email" style="font-size: 20px">Age </label>
+			      			<input type="text" class="form-control"   name="age">
+			      		</div>
+		            <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Contact</label>
+		              <input type="text" class="form-control"  name="contact">
+		            </div>
+
+		            <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Place </label>
+		              <input type="text" class="form-control"  name="place">
+		            </div>
+
+                                <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Pin</label>
+		              <input type="text" class="form-control"  name="pin">
+		            </div>
+                                <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Post</label>
+		              <input type="text" class="form-control"  name="post">
+		            </div>
+                                <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Photo</label>
+		              <input type="file" class="form-control"  name="photo">
+		            </div>
+
+                                             <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Password</label>
+		              <input type="text" class="form-control"  name="password">
+		            </div>             <div class="form-group mb-4">
+		            	<label class="label" for="password" style="font-size: 20px">Confirm Password</label>
+		              <input type="text" class="form-control"  name="confrimpasw">
+		            </div>
+
+		            <div class="form-group">
+		            	<button type="submit" class="btn btn-primary rounded submit p-3">Sign Up</button>
+		            </div>
+		          </form>
+		          <div class="w-100 social-wrap">
+{#		          	<p>#}
+{#		          		<span>or</span>#}
+{#		          		<span>Signup with</span>#}
+{#		          	</p>#}
+{#		          	<p class="social-media d-flex justify-content-center">#}
+{#									<a href="#" class="social-icon facebook d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>#}
+{#									<a href="#" class="social-icon twitter d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>#}
+{#								</p>#}
+								<p class="mt-4">I'm already a member! <a href="/myapp/login/">Sign In</a></p>
+		          </div>
+		        </div>
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="/static/signup/js/jquery.min.js"></script>
+  <script src="/static/signup/js/popper.js"></script>
+  <script src="/static/signup/js/bootstrap.min.js"></script>
+  <script src="/static/signup/js/main.js"></script>
+
+	</body>
+</html>
+

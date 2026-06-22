@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Signup</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h1, h2 {
+            color: #444;
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            text-align: left;
+            margin-top: 12px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            display: block;
+            font-size: 14px;
+        }  select {
+            width: 100%;
+            padding: 12px;
+            margin: 6px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            display: block;
+            font-size: 14px;
+        }
+{#     .gender-container {#}
+{#    display: flex;#}
+{#    justify-content: space-between;#}
+{#    align-items: center;#}
+{#    gap: 15px;#}
+{#}#}
+{#.gender-container input {#}
+{#    margin-right: 5px;#}
+{#}#}
+
+        .submit-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+        @media (max-width: 1024px) {
+            .container {
+                width: 80%;
+                padding: 30px;
+            }
+            h1, h2 {
+                font-size: 1.5em;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+            h1, h2 {
+                font-size: 1.2em;
+            }
+            .gender-container {
+{#                flex-direction: row;#}
+{#                justify-content: space-between;#}
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Our Medical Portal</h1>
+    <div class="container">
+        <h2>Doctor Signup</h2>
+        <form action="/myapp/doctor_signup_post/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="contact">Contact</label>
+<input type="text" id="contact" name="contact" required pattern="\d{10}" title="Enter exactly 10 digits">
+
+            <label for="qualification">Qualification</label>
+            <input type="text" id="qualification" name="qualification" required>
+
+            <label for="place">Place</label>
+            <input type="text" id="place" name="place" required>
+
+            <label for="pin">Pin</label>
+            <input type="text" id="pin" name="pin" required>
+
+            <label for="post">Post</label>
+            <input type="text" id="post" name="post" required>
+
+            <label for="photo">Photo</label>
+            <input type="file" id="photo" name="photo" required>
+
+            <label>Gender</label>
+            <select name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+
+
+
+
+            <label for="photo">password</label>
+            <input type="text" id="photo" name="password" required>
+
+            <label for="age">confrimpsw</label>
+            <input type="text" id="age" name="confrimpsw" required>
+
+            <input type="submit" class="submit-btn" value="Sign Up">
+        </form>
+    </div>
+</body>
+</html>
